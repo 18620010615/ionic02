@@ -1,0 +1,95 @@
+<!--
+  Generated template for the WarningPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>报警</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+  <div padding>
+    <ion-segment [(ngModel)]="top">
+        <ion-segment-button value="allWarningInfo">
+            所有报警
+          </ion-segment-button>
+      <ion-segment-button value="openWarningInfo">
+        开盖报警
+      </ion-segment-button>
+      <ion-segment-button value="waterWarningInfo">
+        水位报警
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="top">
+      <ion-list *ngSwitchCase="'allWarningInfo'">
+          <ion-list-header>
+            报警记录
+          </ion-list-header>
+          <!-- <ng-container>
+            <button ion-item  (click)="showModal()" >
+              <ion-icon name="alarm" item-start color="danger"></ion-icon>      
+               <h2 >设备名称:测试设备一号</h2>
+              <p >报警位置:天河区科韵路16号</p>
+              <p>报警时间:2018-10-08 10:00:00</p>
+              <ion-note color="danger" item-end>开盖报警</ion-note>
+            </button>
+          </ng-container> -->
+          <ng-container *ngIf="warningInfo">
+            <button ion-item *ngFor="let q of message" (click)="showModal(q)" >
+              <ion-icon name="alarm" item-start color="danger"></ion-icon>      
+               <h2 >设备名称:{{q.device.deviceName}}</h2>
+              <p >报警位置:{{q.device.address}}</p>
+              <p>报警时间:{{q.warnTime}}</p>
+              <ion-note color="danger" item-end>{{q.warnType}}</ion-note>
+            </button>
+          </ng-container>
+
+          <ng-container *ngIf="!warningInfo">
+            <button  ion-item *ngFor="let q of data" (click)="showModal(q)" >
+              <ion-icon name="alarm" item-start color="danger"></ion-icon>      
+               <h2 >设备名称:{{q.device_name}}</h2>
+              <p >报警位置:{{q.device_address}}</p>
+              <p>报警时间:{{q.warnTime}}</p>
+              <ion-note color="danger" item-end>{{q.warnType}}</ion-note>
+            </button>
+          </ng-container>
+        </ion-list>
+    <ion-list *ngSwitchCase="'openWarningInfo'">
+      <ion-list-header>
+        报警记录
+      </ion-list-header>
+      <button ion-item *ngFor="let q of openWarning" (click)="showModal(q)">
+        <ion-icon name="alarm" item-start color="danger"></ion-icon>
+        <h2>设备名称:{{q.device.deviceName}}</h2>
+        <p>报警位置:{{q.device.address}}</p>
+        <p>报警时间:{{q.warnTime}}</p>
+        <ion-note color="danger" item-end>开盖报警</ion-note>
+      </button>
+
+    </ion-list> 
+    <ion-list *ngSwitchCase="'waterWarningInfo'">
+      <ion-list-header>
+        报警记录
+      </ion-list-header>
+      <button ion-item *ngFor="let q of waterWarning" (click)="showModal(q)">
+        <ion-icon name="alarm" item-start color="danger"></ion-icon>
+        <h2>设备名称:{{q.device.deviceName}}</h2>
+        <p>报警位置:{{q.device.address}}</p>
+        <p>报警时间:{{q.warnTime}}</p>
+        <ion-note color="danger" item-end>水位报警</ion-note>
+      </button>
+      
+    
+    </ion-list>
+  </div>
+</ion-content>

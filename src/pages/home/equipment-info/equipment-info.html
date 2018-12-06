@@ -1,0 +1,220 @@
+<!--
+  Generated template for the EquipmentInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div>
+    <ion-segment [(ngModel)]="info">
+      <ion-segment-button value="registerInfo">
+        注册信息
+      </ion-segment-button>
+      <ion-segment-button value="settingInfo">
+        设置信息
+      </ion-segment-button>
+      <ion-segment-button value="warningInfo">
+        报警信息
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div [ngSwitch]="info">
+    <ion-list *ngSwitchCase="'registerInfo'">
+      <ion-item>
+        <ion-label>井盖编号:</ion-label>
+        <ion-input type="text" [(ngModel)]="deviceIdentifier"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>井盖名称:</ion-label>
+        <ion-input type="text" [(ngModel)]="deviceName"></ion-input>
+      </ion-item>
+      <!-- <ion-item>
+        <ion-label>所属部门:</ion-label>
+        <ion-select [(ngModel)]="department">
+            <ion-option value="runningAttentionDepartment">运行维护部</ion-option>
+            <ion-option value="netSuperior">技术部</ion-option>
+            <ion-option value="networkMinistryOfConstruction">网络建设部</ion-option>
+          </ion-select>
+      </ion-item> -->
+      <ion-item>
+        <ion-label>安装人员:</ion-label>
+        <ion-input type="text" [(ngModel)]="installersName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>井盖地址:</ion-label>
+        <ion-input type="text" [(ngModel)]="address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>经度(高德):</ion-label>
+        <ion-input type="text" [(ngModel)]="longitude"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>纬度(高德):</ion-label>
+        <ion-input type="text" [(ngModel)]="latitude"></ion-input>
+      </ion-item>
+      <!-- <ion-item> -->
+        <!-- <ion-label>GPS经度:</ion-label>
+        <ion-input type="text" [(ngModel)]="gpsLongitude"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>GPS纬度:</ion-label>
+        <ion-input type="text" [(ngModel)]="gpsLatitude"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>照片</ion-label>
+
+      </ion-item>
+      <ion-item>
+        <ion-label>备注:</ion-label>
+        <div style="height:200px">
+          <ion-input type="text" [(ngModel)]="note"></ion-input>
+        </div>
+      </ion-item> -->
+      <div>
+        <button ion-button block (click)="uploadManholecoversInfo()">保存</button>
+      </div>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'settingInfo'">
+      <ion-item>
+        <ion-label>IP:</ion-label>
+        <ion-input type="text" [(ngModel)]="ip"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>端口号:</ion-label>
+        <ion-input type="text" [(ngModel)]="port"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>报警角度:</ion-label>
+        <ion-input type="text" [(ngModel)]="angle"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>防抖等级:</ion-label>
+        <ion-select [(ngModel)]="defenShakeLevel">
+            <ion-option >1</ion-option>
+            <ion-option >2</ion-option>
+            <ion-option >3</ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>报警方式:</ion-label>
+        <ion-select [(ngModel)]="warningModel">
+            <ion-option value="test">测试模式</ion-option>
+            <ion-option value="monitoring">监控模式</ion-option>
+
+          </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>灵敏度:</ion-label>
+        <ion-select [(ngModel)]="sensitivity">
+            <ion-option value="low">低</ion-option>
+            <ion-option value="middle">中</ion-option>
+            <ion-option value="high">高</ion-option>
+          </ion-select>
+      </ion-item>
+      <div>
+          <button ion-button block (click)="setSensorParam()">保存</button>
+        </div>
+        <div>
+            <button ion-button block>撤防</button>
+          </div>
+    </ion-list>
+    <!-- <ion-list *ngSwitchCase="'settingInfo'">
+    <ion-list>
+        <ion-item>
+          <ion-label>
+            Lightsaber
+          </ion-label>
+          <ion-select [(ngModel)]="gaming">
+            <ion-option value="1">Blue</ion-option>
+            <ion-option value="2">Green</ion-option>
+            <ion-option value="3">Red</ion-option>
+          </ion-select>
+        </ion-item>
+       </ion-list>
+        <ion-item>
+            <ion-label>
+              Lightsaber
+            </ion-label>
+            <ion-select [(ngModel)]="gaming">
+              <ion-option>Blue</ion-option>
+              <ion-option >Green</ion-option>
+              <ion-option>Red</ion-option>
+            </ion-select>
+          </ion-item>
+    </ion-list> -->
+
+    <ion-list *ngSwitchCase="'warningInfo'">
+      <div>
+        <ion-card>
+          <ion-item class='item-small'>
+            <ion-icon name="calendar" item-start></ion-icon>
+            <h2>编号: 623</h2>
+            <button ion-button (click)="showLocation()" color="primary" clear item-right>
+              地图
+            </button>
+          </ion-item>
+          <ion-item class='item-small'>
+            <ion-icon name="help-buoy" item-start></ion-icon>
+            <h2>名称: 天河黄埔2号井</h2>
+          </ion-item>
+          <ion-item class='item-small'>
+            <ion-icon name="radio" item-start></ion-icon>
+            <h2>状态: 开盖</h2>
+          </ion-item>
+          <ion-item class='item-small'>
+            <ion-icon name="pin" item-start></ion-icon>
+            <h2>位置: 中山大道西141</h2>
+          </ion-item>
+          <ion-item class='item-small'>
+            <ion-icon name="clock" item-start></ion-icon>
+            <h2>上报时间: 2018-08-28 09:36:52</h2>
+          </ion-item>
+        </ion-card>
+      </div>
+      <div>
+        <ion-list>
+          <ion-item>
+            <ion-icon name="alarm" item-start color="danger"></ion-icon>
+            <h2>任务1</h2>
+            <p>中山大道</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="alarm" item-start color="danger"></ion-icon>
+            <h2>任务2</h2>
+            <p>黄埔大道</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="alarm" item-start color="danger"></ion-icon>
+            <h2>任务3</h2>
+            <p>机场路</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="alarm" item-start color="danger"></ion-icon>
+            <h2>任务1</h2>
+            <p>中山大道</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="alarm" item-start color="danger"></ion-icon>
+            <h2>任务2</h2>
+            <p>黄埔大道</p>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="alarm" item-start color="danger"></ion-icon>
+            <h2>任务3</h2>
+            <p>机场路</p>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

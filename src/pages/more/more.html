@@ -1,0 +1,58 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>更多</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="notLogin">
+    <ion-card>
+        <ion-card-header text-center>
+            登录后开放所有功能
+        </ion-card-header>
+        <ion-card-content text-center>
+            <button ion-button outline small (click)="showModal()">未登录</button>
+        </ion-card-content>
+     </ion-card>
+  </div>
+
+  <div *ngIf="logined">
+    <ion-list class="marginTop">
+        <button ion-item>
+            <ion-avatar item-start >
+                <ion-img src='../../assets/imgs/head.png'></ion-img>
+            </ion-avatar>
+            <h2>Alex</h2>
+            <p>查看个人主页或编辑简介</p>
+        </button>
+    </ion-list>
+    <ion-list>
+  	    <button ion-item (click)="setting()">
+  	 	    <ion-icon name="settings" item-left ></ion-icon>
+  	 	    设置
+  	    </button>
+  	    <button ion-item (click)="map()">
+  	 	    <ion-icon name="map" item-left ></ion-icon>
+  	 	    地图
+  	    </button>
+  	    <button ion-item (click)="fileCache()">
+  	 	    <ion-icon name="download" item-left ></ion-icon>
+  	 	    图片缓存
+  	    </button>
+    </ion-list>
+ 
+    <ion-list>
+  	    <button ion-item (click)="about()">
+  		    <ion-icon name="information-circle" item-left></ion-icon>
+  		    关于
+  	    </button>
+    </ion-list>
+    <div>
+      <button ion-button block (click)="exitLogin()" >退出账号</button>
+    </div>
+  </div>
+
+</ion-content>

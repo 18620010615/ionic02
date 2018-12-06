@@ -1,0 +1,94 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>详情</ion-title>
+    <ion-buttons>
+    	<button ion-button (click)="dismiss()">
+    		<span ion-text color="primary" showWhen="ios">取消</span>
+    		<ion-icon name="md-close" showWhen="android"></ion-icon>
+    	</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+  <div>
+    <ion-card *ngIf="deviceInfo">
+      <ion-item class='item-small'>          
+          <ion-icon name="calendar" item-start ></ion-icon>
+          <h2 *ngIf="deviceInfo">编号: {{deviceInfo.message.deviceIdentifier}}</h2>
+          <!-- <h2 *ngIf="!deviceInfo">编号: {{params.device_id}}</h2> -->
+          <button ion-button  (click)="showLocation()" color="primary" clear item-right>
+              地图
+          </button>
+      </ion-item>
+      <ion-item class='item-small'>
+          <ion-icon name="help-buoy" item-start ></ion-icon>
+          <h2 *ngIf="deviceInfo">名称: {{deviceInfo.message.deviceName}}</h2>
+          <!-- <h2 *ngIf="!deviceInfo">名称: {{params.device_name}}</h2> -->
+      </ion-item>
+      <ion-item  class='item-small'>
+          <ion-icon name="radio" item-start ></ion-icon>
+          <h2 *ngIf="deviceInfo">状态: {{deviceInfo.message.status}}</h2>
+          <!-- <h2 *ngIf="!deviceInfo">状态: {{params.status}}</h2> -->
+      </ion-item>
+      <ion-item class='item-small'>
+          <ion-icon name="pin" item-start ></ion-icon>
+          <h2 *ngIf="deviceInfo">位置: {{deviceInfo.message.address}}</h2>
+          <!-- <h2 *ngIf="!deviceInfo">位置: {{params.address}}</h2> -->
+      </ion-item>
+      <ion-item class='item-small'>
+          <ion-icon name="clock" item-start ></ion-icon>
+          <h2 *ngIf="deviceInfo">上报时间: {{deviceInfo.message.gmtCreate}}</h2>
+          <!-- <h2 *ngIf="!deviceInfo">上报时间: {{params.warnTime}}</h2> -->
+      </ion-item>
+    </ion-card>
+    <ion-card *ngIf="!deviceInfo">
+          <ion-item class='item-small'>          
+                <ion-icon name="calendar" item-start ></ion-icon>        
+                <h2 >编号: {{deviceId}}</h2>
+                <button ion-button  (click)="showLocation()" color="primary" clear item-right>
+                    地图
+                </button>
+            </ion-item>
+           <ion-item class='item-small'>
+                <ion-icon name="help-buoy" item-start ></ion-icon>            
+                <h2>名称: {{name}}</h2>
+            </ion-item> 
+             <ion-item  class='item-small'>
+                <ion-icon name="radio" item-start ></ion-icon> 
+                <h2>状态: {{warnType}} </h2>
+            </ion-item>
+            <ion-item class='item-small'>
+                <ion-icon name="pin" item-start ></ion-icon>           
+                <h2 >位置: {{address}}</h2>
+            </ion-item>
+            <ion-item class='item-small'>
+                <ion-icon name="clock" item-start ></ion-icon>              
+                <h2 >上报时间: {{warnTime}}</h2>
+            </ion-item>  
+           </ion-card>
+  </div>
+  <div>
+    <ion-list>
+        <ion-item >
+          <ion-icon name="alarm" item-start color="danger"></ion-icon>
+          <h2 *ngIf="deviceWarningInfo">设备名称:{{deviceWarningInfo.message.device.deviceName}}</h2>
+          <!-- <h2 *ngIf="!deviceWarningInfo">设备名称:{{params.device_name}}</h2> -->
+          <p *ngIf="deviceWarningInfo">报警位置:{{deviceWarningInfo.message.device.address}}</p>
+          <!-- <p *ngIf="!deviceWarningInfo">报警位置:{{params.address}}</p> -->
+          <p *ngIf="deviceWarningInfo">报警时间:{{deviceWarningInfo.message.warnTime}}</p>
+          <!-- <p *ngIf="!deviceWarningInfo">报警时间:{{params.warnTime}}</p> -->
+          <ion-note  *ngIf="deviceWarningInfo" color="danger" item-end>{{deviceWarningInfo.message.warnType}}</ion-note>
+          <!-- <ion-note  *ngIf="!deviceWarningInfo" color="danger" item-end>{{params.warnType}}</ion-note> -->
+        </ion-item>
+        
+      </ion-list>
+  </div>
+</ion-content>
