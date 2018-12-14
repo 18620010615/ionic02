@@ -62,7 +62,7 @@ export class HomePage extends BaseUI {
     (window as any).angularComponent2 = { turnMap: this.turnMap };
   }
 
-  private loadMap() {
+private loadMap() {
     
     var map = new AMap.Map('container', {
       zoom: 16,
